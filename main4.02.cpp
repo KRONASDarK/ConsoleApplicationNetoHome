@@ -1,32 +1,28 @@
 #include <iostream>
-#include <vector>
 
-std::vector<long long> fibonacciSequence(int N) {
-    std::vector<long long> sequence(N + 1);  // Создаем вектор для хранения последовательности
-
-    // Первые два элемента фиксированы
-    sequence[0] = 0;
-    sequence[1] = 1;
-
-    // Строим остальные элементы путем итерации
-    for (int i = 2; i <= N; ++i) {
-        sequence[i] = sequence[i - 1] + sequence[i - 2];
+// Рекурсивная функция для вычисления n-го числа Фибоначчи
+long long fibonacci(int n) {
+    if (n <= 1) {
+        return n;
     }
-
-    return sequence;
-}
-
-// Функция вывода результата
-void printFibonacci(const std::vector<long long>& seq) {
-    for (size_t i = 0; i < seq.size(); ++i) {
-        std::cout <<  i+1 << "  --->  " << seq[i] << "\n";
-    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 int main() {
-    const int N = 90;   // Количество элементов последовательности
-    auto result = fibonacciSequence(N);
-    printFibonacci(result);
+    int num_elements;
+    
+    std::cout << "Введите количество элементов последовательности Фибоначчи: ";
+    std::cin >> num_elements;
+
+    if (num_elements <= 0) {
+        std::cerr << "Ошибка: Количество должно быть положительным числом." << std::endl;
+        return 1;
+    }
+
+    std::cout << "Первые " << num_elements << " чисел последовательности Фибоначчи:" << std::endl;
+    for (int i = 0; i < num_elements; ++i) {
+        std::cout << fibonacci(i) << std::endl;
+    }
 
     return 0;
 }
