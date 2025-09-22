@@ -1,14 +1,8 @@
 #include <iostream>
 
-void create_array(double num) {
+double *create_array(double num) {
     double* arr = new double[num]{0};
-    
-    std::cout << "Массив: ";
-    for (int x = 0; x < num; x++) {
-        std::cout << arr[x] << " ";
-    }
-    
-    delete[] arr;
+    return arr;
 };
 
 int main(int argc, char *argv[])
@@ -18,7 +12,14 @@ int main(int argc, char *argv[])
 	std::cout << "Введите размер массива: ";
 	std::cin >> num;
 	
-	create_array(num);
+	double *array = create_array(num);
+	
+	std::cout << "Массив: ";
+    for (int x = 0; x < num; x++) {
+        std::cout << array[x] << " ";
+    }
+    
+    delete[] array;
 	
 	return 0;
 }
